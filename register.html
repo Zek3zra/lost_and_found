@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RETRIEVE | Create TUPV Account</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="landing.css">
+    <link rel="stylesheet" href="header.css">
+    <link rel="stylesheet" href="footer.css">
+    
+    <style>
+        /* --- REGISTRATION PAGE SPECIFIC UI OVERRIDES --- */
+        :root {
+            --bg-body: #f8fafc;
+            --bg-surface: #ffffff;
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --border-light: #e2e8f0;
+            --primary-blue: #1E3A8A; 
+            --primary-blue-hover: #1E40AF;
+        }
+
+        body {
+            background-color: var(--bg-body);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .register-container {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 60px 24px;
+        }
+
+        .form-card {
+            background-color: var(--bg-surface);
+            border-radius: 20px;
+            padding: 48px 40px;
+            width: 100%;
+            max-width: 480px;
+            box-shadow: 0 25px 50px -12px rgba(30, 58, 138, 0.1);
+            border: 1px solid var(--border-light);
+            transition: transform 0.3s ease;
+        }
+
+        .form-card:hover { transform: translateY(-2px); }
+        .back-link { display: inline-flex; align-items: center; gap: 8px; color: var(--text-secondary); font-size: 0.9rem; text-decoration: none; margin-bottom: 24px; font-weight: 500; transition: color 0.2s ease; }
+        .back-link:hover { color: var(--primary-blue); }
+        .form-card h2 { font-size: 1.5rem; color: var(--text-primary); margin-bottom: 32px; text-align: center; font-weight: 700; letter-spacing: -0.02em; }
+        .form-row { display: flex; gap: 16px; flex-wrap: wrap; }
+        .form-row .form-group { flex: 1; min-width: 180px; }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; font-size: 0.9rem; margin-bottom: 8px; color: var(--text-secondary); font-weight: 600; }
+        .form-group input { width: 100%; padding: 14px 16px; border: 1px solid var(--border-light); border-radius: 12px; font-size: 0.95rem; background-color: var(--bg-body); color: var(--text-primary); transition: all 0.2s ease; font-family: 'Inter', sans-serif; box-sizing: border-box; }
+        .form-group input::placeholder { color: #94a3b8; }
+        .form-group input:focus { border-color: var(--primary-blue); outline: none; box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.1); background-color: var(--bg-surface); }
+        
+        .create-account-btn { width: 100%; background-color: var(--primary-blue); color: #ffffff; border: none; border-radius: 10px; padding: 14px; font-size: 1rem; font-weight: 600; cursor: pointer; margin-top: 12px; transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 4px 10px rgba(30, 58, 138, 0.2); display: flex; justify-content: center; align-items: center; }
+        .create-account-btn:hover:not(:disabled) { background-color: var(--primary-blue-hover); transform: translateY(-2px); box-shadow: 0 6px 15px rgba(30, 58, 138, 0.3); }
+        .create-account-btn:disabled { opacity: 0.7; cursor: not-allowed; }
+        .login-prompt { text-align: center; margin-top: 24px; font-size: 0.9rem; color: var(--text-secondary); }
+        .login-prompt a { color: var(--primary-blue); text-decoration: none; font-weight: 600; }
+        .login-prompt a:hover { text-decoration: underline; }
+        .footer { display: none; }
+    </style>
+</head>
+<body>
+
+    <header class="main-header">
+        <nav class="main-nav">
+            <div class="logoContainer">
+                <a href="landing.html" class="logoLink"> 
+                    <img src="images/logo.png" alt="TUPV Retrieve Logo" class="logoImg">
+                    <div class="headerText">
+                        <span class="universityName">Retrieve TUPV</span>
+                        <span class="universityMotto" id="current-date-time">Loading date...</span>
+                    </div>
+                </a>
+            </div>
+            
+            <div class="navigationItems">
+                <div class="navItem"><a href="landing.html">Home</a></div>
+                <div class="navItem"><a href="#" id="about-link">About</a></div>
+                <div class="navItem"><a href="#" id="contact-link">Contact</a></div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="register-container">
+        <div class="form-card">
+            <a href="landing.html" class="back-link"><i class="fa-solid fa-arrow-left"></i> Go Back</a>
+            <h2>Create an Account</h2>
+            
+            <form id="registerForm" action="register.php" method="POST">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstName">First Name</label>
+                        <input type="text" id="firstName" name="firstName" placeholder="Juan" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Last Name</label>
+                        <input type="text" id="lastName" name="lastName" placeholder="Dela Cruz" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">TUPV Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="student@tupv.edu.ph" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="contact_number">Contact Number</label>
+                        <input type="text" id="contact_number" name="contact_number" placeholder="09xxxxxxxxx" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="course_section">Course & Section</label>
+                        <input type="text" id="course_section" name="course_section" placeholder="BSIT 3-A" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="address">Complete Address</label>
+                    <input type="text" id="address" name="address" placeholder="Bacolod City" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="At least 8 characters" minlength="8" required>
+                </div>
+                <button type="submit" class="create-account-btn" id="create-account-btn">Sign Up</button>
+            </form>
+
+            <div class="login-prompt">
+                Already have an account? <a href="login.html">Log in here</a>
+            </div>
+        </div>
+    </main>
+
+    <div id="message-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="close-modal">&times;</button>
+            <h2 id="modal-title">Success!</h2>
+            <p id="modal-message">Sign-up complete! Redirecting...</p>
+        </div>
+    </div>
+
+    <script>
+        // Clock functionality
+        function updateDateTime() {
+            const dateTimeElement = document.getElementById('current-date-time');
+            if(dateTimeElement) {
+                const now = new Date();
+                const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' };
+                dateTimeElement.textContent = now.toLocaleDateString('en-US', options);
+            }
+        }
+        setInterval(updateDateTime, 1000);
+        updateDateTime();
+
+        // Modal close functionality
+        document.querySelectorAll('.close-modal').forEach(button => {
+            button.addEventListener('click', function() {
+                this.closest('.modal-overlay').classList.remove('show');
+            });
+        });
+
+        window.addEventListener('click', (event) => {
+            if (event.target.classList.contains('modal-overlay')) {
+                event.target.classList.remove('show');
+            }
+        });
+
+        // Registration AJAX Handling
+        document.getElementById('registerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const formData = new FormData(this);
+            const submitBtn = document.getElementById('create-account-btn');
+            const originalText = submitBtn.innerHTML;
+
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = `
+                <svg width="20" height="20" viewBox="0 0 24 24" style="margin-right:8px; animation: spin 1s linear infinite;">
+                    <circle cx="12" cy="12" r="10" stroke="#fff" stroke-width="2" fill="none" stroke-opacity="0.3" />
+                    <path d="M12 2a10 10 0 0 1 10 10" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" />
+                </svg>
+                Signing up...
+                <style>@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }</style>
+            `;
+
+            fetch('register.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalText;
+
+                const modal = document.getElementById('message-modal');
+                const modalMessage = document.getElementById('modal-message');
+                const modalTitle = document.getElementById('modal-title');
+
+                if (data.success) {
+                    modalTitle.textContent = 'Success!';
+                    modalTitle.style.color = 'var(--primary-blue)';
+                    modalMessage.textContent = 'Sign-up complete! Redirecting to login...';
+                    modal.classList.add('show');
+                    setTimeout(() => { window.location.href = 'login.html'; }, 2000);
+                } else {
+                    modalTitle.textContent = 'Registration Failed';
+                    modalTitle.style.color = '#dc2626'; 
+                    modalMessage.textContent = data.message;
+                    modal.classList.add('show');
+                }
+            })
+            .catch(() => {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalText;
+                const modal = document.getElementById('message-modal');
+                const modalTitle = document.getElementById('modal-title');
+                modalTitle.textContent = 'Error';
+                modalTitle.style.color = '#dc2626';
+                document.getElementById('modal-message').textContent = 'An unexpected error occurred. Please try again.';
+                modal.classList.add('show');
+            });
+        });
+    </script>
+</body>
+</html>
