@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="footer.css">
     
     <style>
-        /* --- LOGIN PAGE SPECIFIC UI OVERRIDES --- */
+    
         :root {
             --bg-body: #f8fafc;
             --bg-surface: #ffffff;
@@ -146,7 +146,7 @@
             cursor: not-allowed;
         }
 
-        /* Hide the old standalone mobile footer */
+
         .footer { display: none; }
     </style>
 </head>
@@ -297,7 +297,7 @@
     </div>
 
     <script>
-        // Date/Time Script
+     
         function updateDateTime() {
             const dateTimeElement = document.getElementById('current-date-time');
             if(dateTimeElement) {
@@ -309,7 +309,7 @@
         setInterval(updateDateTime, 1000);
         updateDateTime();
 
-        // Modal Script (Header & Footer)
+       
         const modals = {
             'about-link': 'about-modal',
             'footer-about-link': 'about-modal',
@@ -343,7 +343,7 @@
             }
         });
 
-        // Login AJAX Handling
+  
         document.getElementById('loginForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
@@ -351,7 +351,7 @@
             const submitBtn = document.getElementById('login-btn');
             const originalText = submitBtn.innerHTML;
 
-            // Show loading state
+            
             submitBtn.disabled = true;
             submitBtn.innerHTML = `
                 <svg width="20" height="20" viewBox="0 0 24 24" style="margin-right:8px; animation: spin 1s linear infinite;">
@@ -388,7 +388,7 @@
 
                 } else {
                     modalTitle.textContent = 'Login Failed';
-                    modalTitle.style.color = '#dc2626'; // Red for error
+                    modalTitle.style.color = '#dc2626'; 
                     modalMessage.textContent = data.message;
                     modal.classList.add('show');
                 }

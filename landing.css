@@ -1,11 +1,11 @@
-/* --- LANDING PAGE SPECIFIC STYLES --- */
+
 
 :root {
     --primary-blue: #1E3A8A; 
     --primary-blue-hover: #1E40AF;
     --accent-amber: #F59E0B; 
     --accent-amber-hover: #D97706; 
-    --bg-body: #ffffff; /* Changed to pure white */
+    --bg-body: #ffffff;
     --bg-surface: #ffffff;
     --text-primary: #0f172a;
     --text-secondary: #475569;
@@ -23,7 +23,7 @@ html, body {
     overflow-x: hidden; 
 }
 
-/* --- HERO SECTION --- */
+
 .hero-section {
     min-height: 100vh; 
     display: flex;
@@ -36,7 +36,7 @@ html, body {
     overflow: hidden; 
 }
 
-/* --- FLOATING ITEMS --- */
+
 .floating-bg {
     position: absolute;
     top: 0;
@@ -49,11 +49,11 @@ html, body {
 
 .floating-icon {
     position: absolute;
-    opacity: 0.25; /* Slightly softened so they sit perfectly on the pure white background */
+    opacity: 0.25;
     will-change: transform, left, top; 
 }
 
-/* --- MAIN CONTAINER (BLUE) --- */
+
 .hero-content {
     max-width: 520px; 
     background: rgba(30, 58, 138, 0.95); 
@@ -70,8 +70,8 @@ html, body {
 }
 
 .logo-container {
-    width: 120px; /* Increased from 80px */
-    height: 120px; /* Increased from 80px */
+    width: 120px;
+    height: 120px; 
     margin-bottom: 24px;
 }
 
@@ -80,12 +80,12 @@ html, body {
     height: 100%;
     object-fit: contain;
     
-    /* NEW: Badge Styling */
-    background-color: #ffffff; /* Solid white to fill the transparent background */
-    border: 3px solid #ffffff; /* Clean white border */
-    border-radius: 50%; /* Makes the background a perfect circle */
-    padding: 6px; /* Gives the gear some breathing room from the border */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Soft drop shadow to lift it off the card */
+    
+    background-color: #ffffff; 
+    border: 3px solid #ffffff; 
+    border-radius: 50%; 
+    padding: 6px; 
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); 
 }
 
 .hero-title {
@@ -151,7 +151,7 @@ html, body {
     border-color: #ffffff;
 }
 
-/* --- MODAL STYLES --- */
+
 .modal-overlay {
     display: none; 
     position: fixed;

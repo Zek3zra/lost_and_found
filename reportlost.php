@@ -229,7 +229,7 @@ if (!isset($_SESSION['user_id'])) {
     </div>
 
     <script>
-        // --- Standard Date/Time Script ---
+     
         function updateDateTime() {
             const dateTimeElement = document.getElementById('current-date-time');
             if(dateTimeElement) {
@@ -241,7 +241,7 @@ if (!isset($_SESSION['user_id'])) {
         setInterval(updateDateTime, 1000);
         updateDateTime();
 
-        // --- Sidebar Toggle Script ---
+
         const sidebarToggle = document.getElementById('sidebar-toggle');
         const sidebar = document.getElementById('desktop-sidebar');
 
@@ -251,7 +251,7 @@ if (!isset($_SESSION['user_id'])) {
             });
         }
 
-        // --- Photo Uploader Script ---
+
         const photoUploader = document.getElementById('photo-uploader');
         const photoInput = document.getElementById('photo-input');
         let uploadedImageSrc = '';
@@ -277,7 +277,7 @@ if (!isset($_SESSION['user_id'])) {
             });
         }
 
-        // --- Form Submission and Modal Logic ---
+      
         const reportForm = document.getElementById('report-form');
         const confirmationModal = document.getElementById('confirmation-modal');
         const successModal = document.getElementById('success-modal');
@@ -342,7 +342,7 @@ if (!isset($_SESSION['user_id'])) {
             });
         }
         
-        // Modal general handling
+ 
         document.querySelectorAll('.close-modal').forEach(button => {
             button.addEventListener('click', function() {
                 this.closest('.modal-overlay').classList.remove('show');

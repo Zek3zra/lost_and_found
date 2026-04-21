@@ -1,4 +1,3 @@
-/* --- STYLES FOR REPORT LOST FORM (TUPV RETRIEVE UI) --- */
 
 :root {
     --bg-body: #f8fafc;
@@ -60,7 +59,7 @@
     margin-bottom: 8px;
 }
 
-/* Common Input Styles */
+
 #category-select, #item-name, #item-description, #lost-date, #lost-time, #location {
     width: 100%;
     padding: 14px 16px;
@@ -82,7 +81,7 @@
 
 .select-wrapper { position: relative; }
 .select-wrapper::after {
-    content: '\f078'; /* FontAwesome angle-down */
+    content: '\f078'; 
     font-family: 'Font Awesome 6 Free';
     font-weight: 900;
     font-size: 0.8rem;
@@ -100,7 +99,7 @@
     cursor: pointer;
 }
 
-/* Photo Uploader */
+
 .photo-uploader {
     width: 100%;
     aspect-ratio: 16 / 9; 
@@ -169,7 +168,7 @@
     box-shadow: 0 6px 15px rgba(30, 58, 138, 0.3);
 }
 
-/* Grid Layout for Desktop */
+
 @media (min-width: 768px) {
     .report-form {
         display: grid;
@@ -208,7 +207,7 @@
     }
 }
 
-/* Modal Enhancements */
+
 .confirmation-modal-content, .success-modal-content {
     max-width: 650px;
 }

@@ -3,7 +3,7 @@ session_start();
 include 'db_connect.php'; 
 header('Content-Type: application/json');
 
-// Only logged-in users can do this
+
 if (!isset($_SESSION['user_id'])) {
     echo json_encode(['success' => false, 'message' => 'Not authorized.']);
     exit;
@@ -18,7 +18,7 @@ if (empty($notif_id)) {
 }
 
 try {
-    // Mark a specific notification as read
+   
     $sql = "UPDATE notifications SET is_read = 1 WHERE notification_id = ? AND user_id = ?";
     $stmt = $pdo->prepare($sql);
     $stmt->execute([$notif_id, $user_id]);

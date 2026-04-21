@@ -1,26 +1,26 @@
 <?php
 session_start();
 
-// If the user is not logged in, redirect to the login page
+
 if (!isset($_SESSION['user_id'])) {
     header("Location: login.html");
     exit;
 }
 
-// Get user data from session variables set by your login.php
+
 $user_name = htmlspecialchars($_SESSION['user_name'] ?? 'Username');
 $user_email = htmlspecialchars($_SESSION['user_email'] ?? 'user@example.com');
 $user_pfp = $_SESSION['user_pfp'] ?? null;  
 ?>
 
 <?php
-// 1. Include your database connection
+
 include 'db_connect.php'; 
 
-// 2. Get the user ID from the session
+
 $user_id = $_SESSION['user_id'];
 
-// 3. Fetch all notifications for this user, newest first
+
 $notif_stmt = $pdo->prepare(
     "SELECT * FROM notifications 
      WHERE user_id = ? 
@@ -29,7 +29,7 @@ $notif_stmt = $pdo->prepare(
 $notif_stmt->execute([$user_id]);
 $notifications = $notif_stmt->fetchAll(PDO::FETCH_ASSOC);
 
-// 4. Get a count of *unread* notifications
+
 $unread_count = 0;
 foreach ($notifications as $notif) {
     if (!$notif['is_read']) {
@@ -37,7 +37,7 @@ foreach ($notifications as $notif) {
     }
 }
 
-// 5. Fetch additional user details for the profile display
+
 $user_stmt = $pdo->prepare("SELECT first_name, last_name, contact_number, course_section, address FROM users WHERE id = ?");
 $user_stmt->execute([$user_id]);
 $user_data = $user_stmt->fetch(PDO::FETCH_ASSOC);
@@ -385,7 +385,7 @@ $address = htmlspecialchars($user_data['address'] ?? 'Not provided');
     </div>
 
     <script>
-      // --- Standard Date/Time Script ---
+ 
     function updateDateTime() {
         const dateTimeElement = document.getElementById('current-date-time');
         if(dateTimeElement) {
@@ -397,7 +397,7 @@ $address = htmlspecialchars($user_data['address'] ?? 'Not provided');
     setInterval(updateDateTime, 1000);
     updateDateTime();
 
-    // --- MODAL SCRIPT (HEADER & FOOTER) ---
+   
     const modals = {
         'about-link': 'about-modal',
         'footer-about-link': 'about-modal',
@@ -423,11 +423,10 @@ $address = htmlspecialchars($user_data['address'] ?? 'Not provided');
         }
     });
 
-    // --- Helper function to close modal and reset form ---
     function closeModal(modal) {
         if (!modal) return;
         modal.classList.remove('show');
-        // If the modal has a form inside it, reset it to its original database values
+       
         const form = modal.querySelector('form');
         if (form) {
             form.reset();
@@ -459,7 +458,7 @@ $address = htmlspecialchars($user_data['address'] ?? 'Not provided');
         });
     }
     
-    // --- Sidebar Toggle Script ---
+   
     const sidebarToggle = document.getElementById('sidebar-toggle');
     const sidebar = document.getElementById('desktop-sidebar');
 
@@ -469,7 +468,7 @@ $address = htmlspecialchars($user_data['address'] ?? 'Not provided');
         });
     }
     
-    // --- Page-Specific Profile Logic ---
+   
     const tabButtons = document.querySelectorAll('.tab-btn');
     const tabContents = document.querySelectorAll('.tab-content');
     
@@ -490,7 +489,7 @@ $address = htmlspecialchars($user_data['address'] ?? 'Not provided');
         });
     });
 
-    // --- Notification Click Logic ---
+   
     const notifList = document.querySelector('.notifications-list');
     const notifBadge = document.querySelector('.notif-badge');
 
@@ -506,7 +505,7 @@ $address = htmlspecialchars($user_data['address'] ?? 'Not provided');
             const icon = item.querySelector('.notif-icon');
             if (icon) {
                 icon.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>';
-                icon.style.color = '#10b981'; // Update to green checkmark
+                icon.style.color = '#10b981'; 
             }
 
             if (notifBadge) {
@@ -536,7 +535,7 @@ $address = htmlspecialchars($user_data['address'] ?? 'Not provided');
         });
     }
     
-    // --- Profile Picture Uploader ---
+ 
     const pfpContainer = document.getElementById('profile-picture-container');
     const pfpInput = document.getElementById('pfp-input');
 
@@ -578,7 +577,7 @@ $address = htmlspecialchars($user_data['address'] ?? 'Not provided');
         });
     }
 
-    // --- Delete Account Logic ---
+   
     const confirmDeleteBtn = document.getElementById('confirm-delete-btn');
     const deleteErrorMsg = document.getElementById('delete-error-msg'); 
 

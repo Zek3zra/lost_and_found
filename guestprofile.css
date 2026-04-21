@@ -1,4 +1,4 @@
-/* --- STYLES FOR GUEST MODE PAGE (TUPV RETRIEVE UI) --- */
+
 
 .guest-container {
     padding: 40px 24px;
@@ -6,7 +6,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    flex-grow: 1; /* Pushes the footer to the bottom naturally */
+    flex-grow: 1;
     text-align: center;
     background-color: var(--bg-body); 
 }
@@ -35,7 +35,7 @@
     width: 100px;
     height: 100px;
     border-radius: 50%;
-    background-color: rgba(245, 158, 11, 0.1); /* Soft Amber Background */
+    background-color: rgba(245, 158, 11, 0.1); 
     display: flex;
     justify-content: center;
     align-items: center;
@@ -127,7 +127,7 @@
     background-color: rgba(30, 58, 138, 0.02);
 }
 
-/* Remove the old mobile footer logic since we now use the responsive unified footer */
+
 .footer {
     display: none;
 }

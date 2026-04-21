@@ -1,7 +1,7 @@
 <?php
-include 'db_connect.php'; // Include the new database connection
+include 'db_connect.php'; 
 
-// Fetch all approved items
+
 try {
     $stmt = $pdo->prepare(
         "SELECT * FROM item_reports 
@@ -11,7 +11,7 @@ try {
     $stmt->execute();
     $all_items = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    // Separate items into lost and found arrays
+   
     $lost_items = [];
     $found_items = [];
 
@@ -422,7 +422,7 @@ try {
             }
         });
 
-        // --- Item Details Modal Data Injection ---
+
         const detailsModal = document.getElementById('item-details-modal');
         const modalImage = document.getElementById('modal-item-image');
         
@@ -456,7 +456,7 @@ try {
             if (card) openItemModal(card);
         });
 
-        // --- Filtering Logic ---
+       
         const lostBtn = document.getElementById('lost-btn');
         const foundBtn = document.getElementById('found-btn');
         const categoryFilterSelect = document.getElementById('category-filter-select');

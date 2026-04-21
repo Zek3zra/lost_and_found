@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="footer.css">
     
     <style>
-        /* --- REGISTRATION PAGE SPECIFIC UI OVERRIDES --- */
+        
         :root {
             --bg-body: #f8fafc;
             --bg-surface: #ffffff;
@@ -155,7 +155,7 @@
     </div>
 
     <script>
-        // Clock functionality
+   
         function updateDateTime() {
             const dateTimeElement = document.getElementById('current-date-time');
             if(dateTimeElement) {
@@ -167,7 +167,7 @@
         setInterval(updateDateTime, 1000);
         updateDateTime();
 
-        // Modal close functionality
+   
         document.querySelectorAll('.close-modal').forEach(button => {
             button.addEventListener('click', function() {
                 this.closest('.modal-overlay').classList.remove('show');
@@ -180,7 +180,7 @@
             }
         });
 
-        // Registration AJAX Handling
+       
         document.getElementById('registerForm').addEventListener('submit', function(e) {
             e.preventDefault();
 

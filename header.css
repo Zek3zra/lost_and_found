@@ -1,4 +1,4 @@
-/* --- STYLES FOR DESKTOP & MOBILE HEADER --- */
+
 
 :root {
     --primary-blue: #1E3A8A; 
@@ -43,7 +43,7 @@
     gap: 12px;
 }
 
-/* THE FIX IS HERE: Filter completely removed! */
+
 .logoContainer .logoImg {
     height: 48px; 
     width: 48px;

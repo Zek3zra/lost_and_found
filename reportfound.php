@@ -280,7 +280,7 @@ if (!isset($_SESSION['user_id'])) {
     </div>
 
     <script>
-        // --- Standard Date/Time Script ---
+     
         function updateDateTime() {
             const dateTimeElement = document.getElementById('current-date-time');
             if(dateTimeElement) {
@@ -292,7 +292,7 @@ if (!isset($_SESSION['user_id'])) {
         setInterval(updateDateTime, 1000);
         updateDateTime();
 
-        // --- MODAL SCRIPT (HEADER & FOOTER) ---
+ 
         const modals = {
             'about-link': 'about-modal',
             'footer-about-link': 'about-modal',
@@ -326,7 +326,7 @@ if (!isset($_SESSION['user_id'])) {
             }
         });
         
-        // --- Sidebar Toggle Script ---
+        
         const sidebarToggle = document.getElementById('sidebar-toggle');
         const sidebar = document.getElementById('desktop-sidebar');
 
@@ -336,7 +336,7 @@ if (!isset($_SESSION['user_id'])) {
             });
         }
 
-        // --- Photo Uploader Script ---
+     
         const photoUploader = document.getElementById('photo-uploader');
         const photoInput = document.getElementById('photo-input');
         let uploadedImageSrc = '';
@@ -362,7 +362,7 @@ if (!isset($_SESSION['user_id'])) {
             });
         }
 
-        // --- Form Submission and Modal Logic ---
+    
         const reportForm = document.getElementById('report-form');
         const confirmationModal = document.getElementById('confirmation-modal');
         const successModal = document.getElementById('success-modal');
@@ -388,7 +388,7 @@ if (!isset($_SESSION['user_id'])) {
                 document.getElementById('summary-datetime').textContent = `${date || 'N/A'} at ${time || 'N/A'}`;
                 document.getElementById('summary-location').textContent = location || 'Not specified';
                 
-                // Better empty image handling
+           
                 const summaryImg = document.getElementById('summary-image');
                 if (uploadedImageSrc) {
                     summaryImg.src = uploadedImageSrc;

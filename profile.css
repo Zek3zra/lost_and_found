@@ -1,4 +1,4 @@
-/* --- STYLES FOR PROFILE PAGE (TUPV RETRIEVE UI) --- */
+
 
 :root {
     --bg-body: #f8fafc;
@@ -63,7 +63,7 @@
 }
 
 .profile-picture::after {
-    content: '\f030'; /* FontAwesome Camera icon */
+    content: '\f030'; 
     font-family: 'Font Awesome 6 Free';
     font-weight: 900;
     position: absolute;
@@ -151,13 +151,12 @@
     background-color: rgba(239, 68, 68, 0.05);
 }
 
-/* Hide legacy mobile footer */
 .footer {
     display: none;
 }
 
 
-/* --- PROFILE TAB STYLES --- */
+
 .profile-tabs {
     display: flex;
     width: 100%;
@@ -221,7 +220,7 @@
 }
 
 
-/* --- NOTIFICATIONS LIST STYLES --- */
+
 .notifications-list {
     display: flex;
     flex-direction: column;
@@ -280,7 +279,7 @@
 }
 
 .notification-item.read .notif-icon {
-    color: #10b981; /* Emerald Green */
+    color: #10b981;
 }
 
 .notif-content {
@@ -301,7 +300,7 @@
     color: var(--text-secondary);
 }
 
-/* --- Desktop Layout Enhancements --- */
+
 @media (min-width: 768px) {
     .profile-header-card {
         flex-direction: row;
@@ -335,7 +334,7 @@
     }
 }
 
-/* --- MODAL BUTTON STYLES --- */
+
 .modal-actions {
     display: flex;
     gap: 12px;
@@ -378,7 +377,6 @@
     cursor: not-allowed;
 }
 
-/* --- NEW: User Details Card --- */
 .user-details-card {
     background-color: var(--bg-body);
     border-radius: 12px;
@@ -400,7 +398,7 @@
     color: var(--text-primary);
 }
 
-/* --- NEW: Modal Forms Styles --- */
+
 .modal-form {
     display: flex;
     flex-direction: column;
@@ -446,7 +444,7 @@
     background-color: var(--primary-blue-hover);
 }
 
-/* Add this to your existing @media (min-width: 768px) block to format details cleanly on desktop */
+
 @media (min-width: 768px) {
     .user-details-card {
         background: transparent;
