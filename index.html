@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RETRIEVE - System Loading...</title>
+    <style>
+        /* Modern, clean aesthetic */
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #fcfcfc; /* A very light, clean off-white */
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            overflow: hidden;
+            color: #0b1d3d; /* The deep blue from the logo */
+            opacity: 1;
+            transition: opacity 1s ease-out; /* Smooth fade-out before redirect */
+        }
+
+        /* The main loading container */
+        .loading-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            /* Subtly pulse the whole container for a modern feel */
+            animation: pulse-container 3s infinite ease-in-out;
+        }
+
+        /* Stylizing your Logo */
+        .loading-logo {
+            width: 250px; /* Modern size for a loading screen */
+            height: auto;
+            margin-bottom: 25px;
+            /* Make the logo subtly glow and expand */
+            animation: pulse-logo 3s infinite ease-in-out;
+        }
+
+        /* Modern loading spinner with the blue and orange colors */
+        .modern-spinner {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: inline-block;
+            vertical-align: middle;
+            background: 
+                /* Outer blue ring */
+                conic-gradient(#0b1d3d 0deg 90deg, #f3f3f3 90deg 180deg, #0b1d3d 180deg 270deg, #f3f3f3 270deg 360deg),
+                /* Inner orange core with a smooth color transition */
+                radial-gradient(circle, #ffb84d 0%, #ff9f1c 70%, #0b1d3d 100%);
+            mask: radial-gradient(circle, #0000 65%, #000 66%);
+            -webkit-mask: radial-gradient(circle, #0000 65%, #000 66%);
+            animation: spin 1s infinite linear;
+            margin-bottom: 20px;
+        }
+
+        /* Clean loading text */
+        .loading-text {
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin: 0;
+            /* Text subtle pulse */
+            animation: pulse-text 3s infinite ease-in-out;
+        }
+
+        .loading-subtext {
+            font-size: 1rem;
+            font-weight: 400;
+            margin: 5px 0 0;
+            color: #ff9f1c; /* The orange/gold color from the logo */
+            opacity: 0.8;
+            animation: pulse-text 3s infinite ease-in-out;
+        }
+
+        /* Keyframe Animations */
+        @keyframes spin {
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes pulse-container {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+
+        @keyframes pulse-logo {
+            0%, 100% { box-shadow: 0 0 10px rgba(11, 29, 61, 0.1); }
+            50% { box-shadow: 0 0 25px rgba(255, 159, 28, 0.3); }
+        }
+
+        @keyframes pulse-text {
+            0%, 100% { opacity: 0.9; }
+            50% { opacity: 1; }
+        }
+
+        /* Body fade-out trigger class */
+        body.fade-out {
+            opacity: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="loading-container">
+        <img src="images/logo.png" alt="RETRIEVE Logo" class="loading-logo">
+        
+        <div class="modern-spinner"></div>
+        <p class="loading-text">System RETRIEVE is loading...</p>
+        <p class="loading-subtext">Please wait for the redirect.</p>
+    </div>
+
+    <script>
+        // Use a timeout to simulate a few seconds of loading.
+        const loadingTimeSeconds = 4.5; // Total wait time
+
+        setTimeout(function() {
+            // Add the fade-out class to the body for a smooth transition.
+            document.body.classList.add('fade-out');
+            
+            // Wait for the transition to finish before redirecting (1 second).
+            setTimeout(function() {
+                // Use window.location.replace to prevent users from going back to the load screen.
+                window.location.replace('landing.html');
+            }, 1000); 
+
+        }, (loadingTimeSeconds - 1) * 1000); // Trigger fade 1 second before total time
+    </script>
+</body>
+</html>

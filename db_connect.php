@@ -1,8 +1,8 @@
 <?php
-$host = 'localhost';
-$dbname = 'lost_and_found';
-$username = 'root';
-$password = '';
+$host = 'sql208.infinityfree.com';
+$dbname = 'if0_41769205_lost_and_found'; // <-- This one gets the full name
+$username = 'if0_41769205';              // <-- This one is JUST your account number
+$password = 'WoIiJKcLvorI';
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);

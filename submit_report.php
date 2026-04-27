@@ -3,10 +3,10 @@ session_start();
 header('Content-Type: application/json');
 
 // --- Database Connection Details ---
-$host = 'localhost';
-$dbname = 'lost_and_found';
-$username = 'root';
-$password = '';
+$host = 'sql208.infinityfree.com';
+$dbname = 'if0_41769205_lost_and_found';
+$username = 'if0_41769205';
+$password = 'WoIiJKcLvorI';
 
 // --- Security Check: User must be logged in ---
 // It checks the session variables that your login.php creates.

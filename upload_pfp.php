@@ -4,10 +4,10 @@ session_start();
 header('Content-Type: application/json');
 
 // --- Database Connection Details ---
-$host = 'localhost';
-$dbname = 'lost_and_found';
-$username = 'root';
-$password = '';
+$host = 'sql208.infinityfree.com';
+$dbname = 'if0_41769205_lost_and_found'; // <-- This one gets the full name
+$username = 'if0_41769205';              // <-- This one is JUST your account number
+$password = 'WoIiJKcLvorI';
 
 // --- Security Check: User must be logged in ---
 if (!isset($_SESSION['user_id'])) {

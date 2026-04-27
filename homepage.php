@@ -1,5 +1,5 @@
 <?php
-include 'db_connect.php'; // Include the new database connection
+include 'db_connect.php'; 
 
 // Fetch all approved items
 try {

@@ -12,10 +12,10 @@ require 'PHPMailer/src/Exception.php';
 require 'PHPMailer/src/PHPMailer.php';
 require 'PHPMailer/src/SMTP.php';
 
-$host = 'localhost';
-$dbname = 'lost_and_found';
-$username = 'root';
-$password = '';
+$host = 'sql208.infinityfree.com';
+$dbname = 'if0_41769205_lost_and_found';
+$username = 'if0_41769205';
+$password = 'WoIiJKcLvorI';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     echo json_encode(['success' => false, 'message' => 'Invalid request method.']);
@@ -98,7 +98,7 @@ try {
     $mail->setFrom('tupvlostandfound@gmail.com', 'Retrieve TUPV Admin'); 
     $mail->addAddress($email, $firstName . ' ' . $lastName);
 
-    $verify_link = "http://localhost/lost_and_found/verify.php?token=" . $verification_token;
+  g
 
     $mail->isHTML(true);
     $mail->Subject = 'Verify Your Retrieve TUPV Account';

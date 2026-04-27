@@ -1,10 +1,10 @@
 <?php
 session_start();
 
-$host = 'localhost';
-$dbname = 'lost_and_found';
-$username = 'root';
-$password = '';
+$host = 'sql208.infinityfree.com';
+$dbname = 'if0_41769205_lost_and_found';
+$username = 'if0_41769205';
+$password = 'WoIiJKcLvorI';
 
 $status = 'error';
 $message = 'Invalid or missing verification token.';

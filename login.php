@@ -2,10 +2,10 @@
 session_start();
 header('Content-Type: application/json');
 
-$host = 'localhost';
-$dbname = 'lost_and_found';
-$username = 'root';
-$password = '';
+$host = 'sql208.infinityfree.com';
+$dbname = 'if0_41769205_lost_and_found';
+$username = 'if0_41769205';
+$password = 'WoIiJKcLvorI';
 
 $admin_email = 'lostandfoundadmin@gmail.com';
 $admin_pass = 'admin12345'; // The plain-text password
