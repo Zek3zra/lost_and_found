@@ -213,7 +213,7 @@
     }
 }
 
-/* Modal Enhancements */
+
 .confirmation-modal-content, .success-modal-content {
     max-width: 650px;
 }
@@ -302,14 +302,14 @@
     transform: translateY(-2px);
 }
 
-/* Success Modal Tweaks */
+
 .success-modal-content {
     text-align: center;
     padding: 48px;
 }
 
 .success-icon {
-    color: #10b981; /* Emerald green for success */
+    color: #10b981;
     margin-bottom: 24px;
     display: flex;
     justify-content: center;
