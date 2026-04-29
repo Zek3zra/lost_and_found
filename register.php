@@ -12,8 +12,10 @@ require 'PHPMailer/src/Exception.php';
 require 'PHPMailer/src/PHPMailer.php';
 require 'PHPMailer/src/SMTP.php';
 
-// --- Centralized Database Connection ---
-include 'db_connect.php';
+$host = 'localhost';
+$dbname = 'lost_and_found';
+$username = 'root';
+$password = '';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     echo json_encode(['success' => false, 'message' => 'Invalid request method.']);
@@ -46,7 +48,8 @@ if (strlen($plainPassword) < 8) {
 }
 
 try {
-    // $pdo is already created and available from db_connect.php
+    $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     // Check if email OR (first_name + last_name) already exists
     $stmt = $pdo->prepare("
@@ -61,34 +64,41 @@ try {
         exit;
     }
 
-    // Hash the password and generate a unique verification token
+    // 2. Hash password and generate email token
     $hashedPassword = password_hash($plainPassword, PASSWORD_DEFAULT);
-    $verification_token = bin2hex(random_bytes(32)); 
+    $verification_token = bin2hex(random_bytes(32));
 
-    // Insert new user into the database
-    $stmt = $pdo->prepare("
-        INSERT INTO users (first_name, last_name, email, contact_number, course_section, address, password, role, verification_token, is_verified) 
-        VALUES (?, ?, ?, ?, ?, ?, ?, 'user', ?, 0)
-    ");
-    
-    $stmt->execute([$firstName, $lastName, $email, $contactNumber, $courseSection, $address, $hashedPassword, $verification_token]);
+    // 3. Insert ALL fields, including the token and setting is_verified to 0
+    $stmt = $pdo->prepare("INSERT INTO users (first_name, last_name, email, password, contact_number, course_section, address, verification_token, is_verified) VALUES (?, ?, ?, ?, ?, ?, ?, ?, 0)");
+    $stmt->execute([$firstName, $lastName, $email, $hashedPassword, $contactNumber, $courseSection, $address, $verification_token]);
 
-    // Set up PHPMailer for verification email
+    // 4. Send the verification email using PHPMailer
     $mail = new PHPMailer(true);
     
     $mail->isSMTP();
-    $mail->Host       = 'smtp.gmail.com'; 
+    $mail->Host       = 'smtp.gmail.com';
     $mail->SMTPAuth   = true;
-    $mail->Username   = 'lostandfoundadmin@gmail.com'; // Replace with your sender email
-    $mail->Password   = 'vixj fqol obja ahnf';         // Replace with your Google App Password
+    
+    $mail->Username   = 'tupvlostandfound@gmail.com'; 
+    $mail->Password   = 'tlhesjaxjaiteygq'; // <--- SPACES REMOVED HERE
+    
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-    $mail->Port       = 465;
+    $mail->Port       = 587;
 
-    $mail->setFrom('lostandfoundadmin@gmail.com', 'Retrieve TUPV');
+    // --- XAMPP LOCALHOST SSL BYPASS ---
+    $mail->SMTPOptions = array(
+        'ssl' => array(
+            'verify_peer' => false,
+            'verify_peer_name' => false,
+            'allow_self_signed' => true
+        )
+    );
+    // ----------------------------------
+
+    $mail->setFrom('tupvlostandfound@gmail.com', 'Retrieve TUPV Admin'); 
     $mail->addAddress($email, $firstName . ' ' . $lastName);
 
-    // Create the verification link (Make sure your folder structure is correct)
-    $verify_link = "http://localhost/TUPV-Lost-and-Found/verify.php?token=" . $verification_token;
+    $verify_link = "http://localhost/lost_and_found/verify.php?token=" . $verification_token;
 
     $mail->isHTML(true);
     $mail->Subject = 'Verify Your Retrieve TUPV Account';
@@ -108,15 +118,15 @@ try {
 
     $mail->send();
 
-    // Send JSON success
+    // 5. Send JSON success
     echo json_encode([
         'success' => true, 
-        'message' => 'Registration successful! Please check your email to verify your account.'
+        'message' => 'Sign-up complete! Please check your email to verify your account.'
     ]);
 
+} catch (PDOException $e) {
+    echo json_encode(['success' => false, 'message' => 'Database Error: ' . $e->getMessage()]);
 } catch (Exception $e) {
-    // This catches BOTH PDO errors and PHPMailer errors
-    error_log("Registration/Email error: " . $e->getMessage());
-    echo json_encode(['success' => false, 'message' => 'An error occurred during registration.']);
+    echo json_encode(['success' => false, 'message' => 'Mailer Error: ' . $mail->ErrorInfo]);
 }
 ?>

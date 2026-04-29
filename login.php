@@ -2,8 +2,10 @@
 session_start();
 header('Content-Type: application/json');
 
-// --- Centralized Database Connection ---
-include 'db_connect.php';
+$host = 'localhost';
+$dbname = 'lost_and_found';
+$username = 'root';
+$password = '';
 
 $admin_email = 'lostandfoundadmin@gmail.com';
 $admin_pass = 'admin12345'; // The plain-text password
@@ -32,27 +34,32 @@ if ($email === $admin_email && $plainPassword === $admin_pass) {
     echo json_encode([
         'success' => true, 
         'message' => 'Admin login successful! Redirecting...',
-        'redirect' => 'admin_side/overview.php'
+        'redirect' => 'admin_side/overview.php' 
     ]);
-    exit;
+    exit; 
 }
 
-// --- Standard User DB Check ---
+
+// --- Regular User Login Logic ---
 try {
-    // $pdo is already created and available from db_connect.php
-    $stmt = $pdo->prepare("SELECT * FROM users WHERE email = ?");
+    $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    // MODIFICATION 1: Added 'is_verified' to the SELECT query
+    $stmt = $pdo->prepare("SELECT id, first_name, last_name, email, password, profile_picture_path, role, is_verified FROM users WHERE email = ?");
     $stmt->execute([$email]);
-    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+    $user = $stmt->fetch();
 
     if ($user && password_verify($plainPassword, $user['password'])) {
         
         // ==========================================
-        // 🚨 IMPORTANT VERIFICATION CHECK
+        // MODIFICATION 2: THE GATEKEEPER
+        // Check if the account is verified before letting them in!
         // ==========================================
         if ($user['is_verified'] == 0) {
             echo json_encode([
                 'success' => false, 
-                'message' => 'Please verify your email address before logging in. Check your inbox.'
+                'message' => 'Please verify your email address before logging in. Check your inbox for the link!'
             ]);
             exit; // Stop the script completely
         }
@@ -92,8 +99,6 @@ try {
     }
 
 } catch (PDOException $e) {
-    // Log error securely
-    error_log("Login error: " . $e->getMessage());
-    echo json_encode(['success' => false, 'message' => 'A database error occurred.']);
+    echo json_encode(['success' => false, 'message' => 'Database error. Please try again later.']);
 }
 ?>
