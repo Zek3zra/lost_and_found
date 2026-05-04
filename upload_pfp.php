@@ -4,10 +4,7 @@ session_start();
 header('Content-Type: application/json');
 
 // --- Database Connection Details ---
-$host = 'localhost';
-$dbname = 'lost_and_found';
-$username = 'root';
-$password = '';
+// Replaced with db_connect.php inclusion below
 
 // --- Security Check: User must be logged in ---
 if (!isset($_SESSION['user_id'])) {
@@ -49,8 +46,7 @@ if (isset($_FILES['pfp']) && $_FILES['pfp']['error'] == 0) {
 
 // --- Update Database ---
 try {
-    $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    include 'db_connect.php';
 
     // Update the user's row with the new path
     $sql = "UPDATE users SET profile_picture_path = ? WHERE id = ?";

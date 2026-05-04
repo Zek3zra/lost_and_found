@@ -1,11 +1,6 @@
 <?php
 session_start();
 
-$host = 'localhost';
-$dbname = 'lost_and_found';
-$username = 'root';
-$password = '';
-
 $status = 'error';
 $message = 'Invalid or missing verification token.';
 
@@ -13,8 +8,7 @@ if (isset($_GET['token'])) {
     $token = $_GET['token'];
 
     try {
-        $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        include 'db_connect.php';
 
         // Find the user with this token who is NOT verified yet
         $stmt = $pdo->prepare("SELECT id FROM users WHERE verification_token = ? AND is_verified = 0");

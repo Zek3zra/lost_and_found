@@ -2,10 +2,7 @@
 session_start();
 header('Content-Type: application/json');
 
-$host = 'localhost';
-$dbname = 'lost_and_found';
-$username = 'root';
-$password = '';
+
 
 $admin_email = 'lostandfoundadmin@gmail.com';
 $admin_pass = 'admin12345'; // The plain-text password
@@ -42,6 +39,9 @@ if ($email === $admin_email && $plainPassword === $admin_pass) {
 
 // --- Regular User Login Logic ---
 try {
+
+    include 'db_connect.php';   
+    
     $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 

@@ -3,10 +3,7 @@ session_start();
 header('Content-Type: application/json');
 
 // --- Database Connection Details ---
-$host = 'localhost';
-$dbname = 'lost_and_found';
-$username = 'root';
-$password = '';
+// Replaced with db_connect.php inclusion below
 
 // --- Security Check: User must be logged in ---
 // It checks the session variables that your login.php creates.
@@ -65,8 +62,7 @@ if (isset($_FILES['photo']) && $_FILES['photo']['error'] == 0) {
 
 // --- Save to Database ---
 try {
-    $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    include 'db_connect.php';
 
     // This SQL matches the table you just created
     // This SQL matches the table you just created

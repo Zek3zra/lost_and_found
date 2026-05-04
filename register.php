@@ -12,11 +12,6 @@ require 'PHPMailer/src/Exception.php';
 require 'PHPMailer/src/PHPMailer.php';
 require 'PHPMailer/src/SMTP.php';
 
-$host = 'localhost';
-$dbname = 'lost_and_found';
-$username = 'root';
-$password = '';
-
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     echo json_encode(['success' => false, 'message' => 'Invalid request method.']);
     exit;
@@ -48,8 +43,7 @@ if (strlen($plainPassword) < 8) {
 }
 
 try {
-    $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    include 'db_connect.php';
 
     // Check if email OR (first_name + last_name) already exists
     $stmt = $pdo->prepare("
